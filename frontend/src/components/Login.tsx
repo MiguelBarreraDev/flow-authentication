@@ -20,7 +20,7 @@ export const Login: React.FC<LoginProps> = ({ onClose }) => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm()
 
   const onSubmit = handleSubmit(async (values) => {
