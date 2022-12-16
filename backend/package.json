@@ -1,0 +1,41 @@
+{
+  "name": "backend-notes-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "jest --version",
+    "std": "standard src/"
+  },
+  "author": "Miguel Barrera",
+  "license": "MIT",
+  "dependencies": {
+    "@sinclair/typebox": "^0.24.28",
+    "ajv": "^8.11.0",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^2.1.1",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.2",
+    "morgan": "^1.10.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "standard": "^17.0.0"
+  },
+  "imports": {
+    "#config/*": "./src/config/*",
+    "#controllers/*": "./src/controllers/*",
+    "#routes/*": "./src/routes/*",
+    "#models/*": "./src/models/*",
+    "#dto/*": "./src/dto/*",
+    "#middlewares/*": "./src/middlewares/*",
+    "#utils/*": "./src/utils/*",
+    "#services/*": "./src/services/*"
+  }
+}
