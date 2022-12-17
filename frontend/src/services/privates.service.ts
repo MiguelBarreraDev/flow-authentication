@@ -25,7 +25,6 @@ interface SignupServiceInterface {
     first_name: string
     last_name: string
     username: string
-    mail: string
     password: string
   }
 }
