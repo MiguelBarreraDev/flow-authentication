@@ -34,11 +34,9 @@ export const Login: React.FC<LoginProps> = ({ onClose }) => {
       <ModalBody pb={6}>
         <form onSubmit={onSubmit} id="form-login" noValidate>
           <FormControl isRequired isInvalid={Boolean(errors.username)}>
-            <FormLabel>First name</FormLabel>
+            <FormLabel>Username</FormLabel>
             <Input
-              {...register('username', {
-                required: 'This field is required'
-              })}
+              {...register('username', { required: 'This field is required' })}
               placeholder="Username"
             />
             <FormErrorMessage>
@@ -54,6 +52,7 @@ export const Login: React.FC<LoginProps> = ({ onClose }) => {
               })}
               placeholder="Password"
             />
+
             <FormErrorMessage>
               {errors.password?.message?.toString()}
             </FormErrorMessage>
