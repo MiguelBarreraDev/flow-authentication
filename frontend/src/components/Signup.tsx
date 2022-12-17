@@ -85,7 +85,14 @@ export const Signup: React.FC<SignupProps> = ({ onClose }) => {
       </ModalBody>
 
       <ModalFooter>
-        <Button type="submit" form="form-signup" colorScheme="purple" mr={3}>
+        <Button
+          isLoading={isSubmitting}
+          loadingText="save"
+          type="submit"
+          form="form-signup"
+          colorScheme="purple"
+          mr={3}
+        >
           Save
         </Button>
         <Button onClick={onClose}>Cancel</Button>
