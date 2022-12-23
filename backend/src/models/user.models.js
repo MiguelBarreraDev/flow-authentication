@@ -9,27 +9,27 @@ const userSchema = new Schema({
   name: {
     type: String,
     require: true,
-    minLength: 2,
+    minLength: 2
   },
   surname: {
     type: String,
     require: true,
-    minLength: 2,
+    minLength: 2
   },
   username: {
     type: String,
     require: true,
-    minLength: 2,
+    minLength: 2
   },
   email: {
     type: String,
-    require:true,
+    require: true,
     uniq: true
   },
   password: {
     minLength: 8,
     type: String,
-    require: true,
+    require: true
   }
 })
 

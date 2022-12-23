@@ -1,25 +1,25 @@
 
-import UserService from "#services/user.services.js"
-import { compare } from "bcrypt"
+import UserService from '#services/user.services.js'
+import { compare } from 'bcrypt'
 
 const userService = new UserService()
 
 const userDeleteController = async (req, res) => {
   const { id, body: { password } } = req
 
-  if (!id)
-    return res.status(401).json({ error: ['Unauthorized user'] })
-  
-  if (!password)
+  if (!id) { return res.status(401).json({ error: ['Unauthorized user'] }) }
+
+  if (!password) {
     return res
       .status(400)
       .json({ error: 'The field or fields to update are not valid' })
+  }
 
   const existingUser = await userService.findById(id)
-  if (!existingUser) return res.status(401).json({ error: ['Unauthorized user'] })
+  if (!existingUser) return res.status(401).json({ errors: ['Unauthorized user'] })
 
   const checkPassword = await compare(password, existingUser.password)
-  if (!checkPassword) return res.status(400).json({ error: ['Wrong credentials'] })
+  if (!checkPassword) return res.status(400).json({ errors: ['Wrong credentials'] })
 
   await userService.deleteById(id)
 

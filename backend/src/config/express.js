@@ -1,6 +1,6 @@
 import userRouter from '#routes/user.routes.js'
-import express from 'express'
 import cors from 'cors'
+import express from 'express'
 import morgan from 'morgan'
 
 const expressApp = express()

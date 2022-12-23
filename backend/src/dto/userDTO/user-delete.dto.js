@@ -1,6 +1,6 @@
-import { Type } from "@sinclair/typebox";
-import { passwordDTOSchema } from "#dto/shared/dto-types.js";
-import Ajv from "ajv";
+import { Type } from '@sinclair/typebox'
+import { passwordDTOSchema } from '#dto/shared/dto-types.js'
+import Ajv from 'ajv'
 import AddErrors from 'ajv-errors'
 
 const UnsignupDTOSchema = Type.Object({

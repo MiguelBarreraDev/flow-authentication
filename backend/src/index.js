@@ -1,6 +1,6 @@
-import '#config/env.js'
 import connectDB from '#config/db.js'
-import httpServer from "#config/http.js"
+import '#config/env.js'
+import httpServer from '#config/http.js'
 
 async function runServer () {
   await connectDB(process.env.MONGODB_URL)

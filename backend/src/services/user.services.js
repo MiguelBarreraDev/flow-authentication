@@ -1,4 +1,4 @@
-import UserModel from "#models/user.models.js"
+import UserModel from '#models/user.models.js'
 
 class UserService {
   #toPersistence (domainUser) {
@@ -32,7 +32,7 @@ class UserService {
     const newUser = new UserModel(persistenceUser)
 
     await newUser.save()
-    
+
     return this.#toDomain(newUser)
   }
 

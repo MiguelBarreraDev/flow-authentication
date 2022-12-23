@@ -1,5 +1,5 @@
-import { Type } from "@sinclair/typebox";
-import Ajv from "ajv";
+import { Type } from '@sinclair/typebox'
+import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 import AddErrors from 'ajv-errors'
 import {
@@ -8,7 +8,7 @@ import {
   passwordDTOSchema,
   surnameDTOSchema,
   usernameDTOSchema
-} from "#dto/shared/dto-types.js"
+} from '#dto/shared/dto-types.js'
 
 const SignupDTOSchema = Type.Object({
   name: nameDTOSchema,

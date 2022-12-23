@@ -1,11 +1,11 @@
-import userDataController from "#controllers/users/user-data.controller.js";
-import userDeleteController from "#controllers/users/user-delete.controller.js";
-import userEmailController from "#controllers/users/user-email.controller.js";
-import userLoginController from "#controllers/users/user-login.controller.js";
-import userPasswordController from "#controllers/users/user-password.controller.js";
-import userPrfofileController from "#controllers/users/user-profile.controller.js";
-import userSignupController from "#controllers/users/user-signup.controller.js";
-import validateJWT from "#middlewares/validateJWT.js";
+import userDataController from '#controllers/users/user-data.controller.js'
+import userDeleteController from '#controllers/users/user-delete.controller.js'
+import userEmailController from '#controllers/users/user-email.controller.js'
+import userLoginController from '#controllers/users/user-login.controller.js'
+import userPasswordController from '#controllers/users/user-password.controller.js'
+import userPrfofileController from '#controllers/users/user-profile.controller.js'
+import userSignupController from '#controllers/users/user-signup.controller.js'
+import validateJWT from '#middlewares/validateJWT.js'
 import {
   validateLoginDTO,
   validateSignupDTO,
@@ -13,8 +13,8 @@ import {
   validateUpdateDataDTO,
   validateUpdateEmailDTO,
   validateUpdatePasswordDTO
-} from "#middlewares/validateUserDataDTO.js";
-import { Router } from "express";
+} from '#middlewares/validateUserDataDTO.js'
+import { Router } from 'express'
 
 const userRouter = Router()
 

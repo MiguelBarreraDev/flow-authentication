@@ -1,19 +1,19 @@
-import UserService from "#services/user.services.js"
-import { compare, hash } from "bcrypt"
+import UserService from '#services/user.services.js'
+import { compare, hash } from 'bcrypt'
 
 const userService = new UserService()
 
 const userPasswordController = async (req, res) => {
   const { id, body: { oldPassword, newPassword } } = req
 
-  if (!id)
-    return res.status(400).json({ error: 'User id not found' })
+  if (!id) { return res.status(400).json({ error: 'User id not found' }) }
 
-  if (!newPassword || !oldPassword)
+  if (!newPassword || !oldPassword) {
     return res
       .status(400)
       .json({ errors: 'The field or fields to update are not valid' })
-  
+  }
+
   const existingUser = await userService.findById(id)
   if (!existingUser) return res.status(401).json({ errors: ['Wrong credentials'] })
 
