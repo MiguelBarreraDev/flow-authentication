@@ -3,17 +3,15 @@
  * 'login' endpoint.
  */
 
-import { compare } from 'bcrypt'
-import { signJWT } from '#utils/jwt.utils.js'
 import UserService from '#services/user.services.js'
-
-const userService = new UserService()
+import { signJWT } from '#utils/jwt.utils.js'
+import { compare } from 'bcrypt'
 
 const userLoginController = async (req, res) => {
   const { username, password } = req.body
 
   // Verify the existence of the user in the database
-  const existingUser = await userService.findBy({ username })
+  const existingUser = await UserService.findBy({ username })
   if (!existingUser) { return res.status(401).json({ errors: ['Unauthorizd user'] }) }
 
   // Validate if the associated password is correct

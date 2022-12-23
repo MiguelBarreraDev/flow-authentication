@@ -1,6 +1,5 @@
 import userDataController from '#controllers/users/user-data.controller.js'
 import userDeleteController from '#controllers/users/user-delete.controller.js'
-import userEmailController from '#controllers/users/user-email.controller.js'
 import userLoginController from '#controllers/users/user-login.controller.js'
 import userPasswordController from '#controllers/users/user-password.controller.js'
 import userPrfofileController from '#controllers/users/user-profile.controller.js'
@@ -11,7 +10,6 @@ import {
   validateSignupDTO,
   validateUnsignupDTO,
   validateUpdateDataDTO,
-  validateUpdateEmailDTO,
   validateUpdatePasswordDTO
 } from '#middlewares/validateUserDataDTO.js'
 import { Router } from 'express'
@@ -23,8 +21,12 @@ userRouter
   .post('/login', validateLoginDTO, userLoginController)
   .get('/profile', validateJWT, userPrfofileController)
   .patch('/data', validateJWT, validateUpdateDataDTO, userDataController)
-  .patch('/email', validateJWT, validateUpdateEmailDTO, userEmailController)
-  .patch('/password', validateJWT, validateUpdatePasswordDTO, userPasswordController)
+  .patch(
+    '/password',
+    validateJWT,
+    validateUpdatePasswordDTO,
+    userPasswordController
+  )
   .delete('/', validateJWT, validateUnsignupDTO, userDeleteController)
 
 export default userRouter

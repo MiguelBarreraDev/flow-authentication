@@ -1,21 +1,19 @@
-import { hash } from 'bcrypt'
-import { signJWT } from '#utils/jwt.utils.js'
-import { v4 as uuidv4 } from 'uuid'
 import UserService from '#services/user.services.js'
-
-const userService = new UserService()
+import { signJWT } from '#utils/jwt.utils.js'
+import { hash } from 'bcrypt'
+import { v4 as uuidv4 } from 'uuid'
 
 const userSignupController = async (req, res) => {
-  const { name, surname, username, email, password } = req.body
+  const { firstname, lastname, username, email, password } = req.body
 
-  const existingUserByUsername = await userService.findBy({ username })
+  const existingUserByUsername = await UserService.findBy({ username })
   if (existingUserByUsername) {
     return res
       .status(409)
       .json({ errors: ['There is already a user with this username'] })
   }
 
-  const existingUserByEmail = await userService.findBy({ email })
+  const existingUserByEmail = await UserService.findBy({ email })
   if (existingUserByEmail) {
     return res
       .status(409)
@@ -25,10 +23,10 @@ const userSignupController = async (req, res) => {
   // Create new user
   const id = uuidv4()
   const hashedPassword = await hash(password, 10) // TODO: investigate how it works
-  const user = await userService.create({
+  const user = UserService.create({
     id,
-    name,
-    surname,
+    firstname,
+    lastname,
     username,
     email,
     password: hashedPassword
@@ -40,8 +38,8 @@ const userSignupController = async (req, res) => {
 
   res.status(201).json({
     id: user.id,
-    name: user.name,
-    surname: user.surname,
+    firstname: user.firstname,
+    lastname: user.lastname,
     username: user.username,
     email: user.email,
     jwt

@@ -1,11 +1,11 @@
+import { firstnameDTOSchema, lastnameDTOSchema, usernameDTOSchema } from '#dto/shared/dto-types.js'
 import { Type } from '@sinclair/typebox'
 import Ajv from 'ajv'
 import AddErrors from 'ajv-errors'
-import { nameDTOSchema, surnameDTOSchema, usernameDTOSchema } from '#dto/shared/dto-types.js'
 
 const UpdateDataDTOSchema = Type.Object({
-  name: nameDTOSchema,
-  surname: surnameDTOSchema,
+  name: firstnameDTOSchema,
+  surname: lastnameDTOSchema,
   username: usernameDTOSchema
 })
 

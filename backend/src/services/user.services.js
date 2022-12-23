@@ -1,64 +1,65 @@
 import UserModel from '#models/user.models.js'
 
 class UserService {
-  #toPersistence (domainUser) {
-    const { id, name, surname, username, email, password } = domainUser
+  static #toPersistence(domainUser) {
+    const { id, firstname, lastname, username, email, password } = domainUser
 
     return {
       _id: id,
-      name,
-      surname,
+      firstname,
+      lastname,
       username,
       email,
       password
     }
   }
 
-  #toDomain (persistenceUser) {
-    const { _id, name, surname, username, email, password } = persistenceUser
+  static #toDomain(persistenceUser) {
+    const { _id, firstname, lastname, username, email, password } =
+      persistenceUser
 
     return {
       id: _id,
-      name,
-      surname,
+      firstname,
+      lastname,
       username,
       email,
       password
     }
   }
 
-  async create (domainUser) {
-    const persistenceUser = this.#toPersistence(domainUser)
+  static async create(domainUser) {
+    const persistenceUser = UserService.#toPersistence(domainUser)
     const newUser = new UserModel(persistenceUser)
 
     await newUser.save()
 
-    return this.#toDomain(newUser)
+    return UserService.#toDomain(newUser)
   }
 
-  async findById (id) {
+  static async findById(id) {
     const userFound = await UserModel.findById(id).exec()
 
     if (!userFound) return null
 
-    return this.#toDomain(userFound)
+    return UserService.#toDomain(userFound)
   }
 
-  async findBy (filter) {
+  static async findBy(filter) {
     const userFound = await UserModel.findOne(filter).exec()
 
     if (!userFound) return null
 
-    return this.#toDomain(userFound)
+    return UserService.#toDomain(userFound)
   }
 
-  async update (domainUser) {
-    const { _id, ...rest } = this.#toPersistence(domainUser)
+  static async update(domainUser) {
+    const { _id, ...rest } = UserService.toPersistence(domainUser)
 
     await UserModel.findByIdAndUpdate(_id, rest)
   }
 
-  async deleteById (id) {
+  static async deleteById(id) {
     if (!id) return null
 
     await UserModel.findByIdAndDelete(id)

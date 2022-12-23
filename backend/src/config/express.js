@@ -8,9 +8,11 @@ const expressApp = express()
 // Middlewares
 expressApp.use(morgan('tiny'))
 expressApp.use(express.json())
-expressApp.use(cors({
-  origin: process.env.CLIENT_URL
-}))
+expressApp.use(
+  cors({
+    origin: process.env.CLIENT_URL
+  })
+)
 
 // Routes
 expressApp.use('/users', userRouter)
