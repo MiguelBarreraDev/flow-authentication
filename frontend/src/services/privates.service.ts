@@ -1,37 +1,20 @@
-import axios, { AxiosResponse } from 'axios'
-import { User } from '../models'
+import {
+  LoginDataInterface,
+  SignupDataInterface,
+  UserInterface
+} from '../types'
+import { api } from '../utils'
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URI
-
-interface LoginServiceInterface {
-  url: string
-  data: {
-    username: string
-    password: string
-  }
-}
-
-export const loginService = async ({
-  url,
-  data
-}: LoginServiceInterface): Promise<User> => {
-  const { data: body }: AxiosResponse<User> = await axios.post<User>(url, data)
+export const loginService = async (
+  data: LoginDataInterface
+): Promise<UserInterface> => {
+  const { data: body } = await api.post('/users/login', data)
   return body
 }
 
-interface SignupServiceInterface {
-  url: string
-  data: {
-    first_name: string
-    last_name: string
-    username: string
-    password: string
-  }
-}
-export const SignupService = async ({
-  url,
-  data
-}: SignupServiceInterface): Promise<User> => {
-  const { data: body }: AxiosResponse<User> = await axios.post<User>(url, data)
+export const signupService = async (
+  data: SignupDataInterface
+): Promise<UserInterface> => {
+  const { data: body } = await api.post('/users/signup', data)
   return body
 }

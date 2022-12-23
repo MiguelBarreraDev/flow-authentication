@@ -11,6 +11,8 @@ import {
   ModalHeader
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import { signupService } from '../services/privates.service'
+import { SignupDataInterface } from '../types'
 
 interface SignupProps {
   onClose: () => void
@@ -24,6 +26,7 @@ export const Signup: React.FC<SignupProps> = ({ onClose }) => {
   } = useForm()
 
   const onSubmit = handleSubmit(async (values) => {
+    await signupService(values as SignupDataInterface)
     console.log(values)
   })
 
@@ -33,28 +36,28 @@ export const Signup: React.FC<SignupProps> = ({ onClose }) => {
       <ModalCloseButton />
       <ModalBody pb={6}>
         <form onSubmit={onSubmit} id="form-signup" noValidate>
-          <FormControl isRequired isInvalid={Boolean(errors.first_name)}>
+          <FormControl isRequired isInvalid={Boolean(errors.firstname)}>
             <FormLabel>First name</FormLabel>
             <Input
-              {...register('first_name', {
+              {...register('firstname', {
                 required: 'This field is required'
               })}
               placeholder="First name"
             />
             <FormErrorMessage>
-              {errors.first_name?.message?.toString()}
+              {errors.firstname?.message?.toString()}
             </FormErrorMessage>
           </FormControl>
-          <FormControl mt={4} isRequired isInvalid={Boolean(errors.last_name)}>
+          <FormControl mt={4} isRequired isInvalid={Boolean(errors.lastname)}>
             <FormLabel>Last name</FormLabel>
             <Input
-              {...register('last_name', {
+              {...register('lastname', {
                 required: 'This field is required'
               })}
               placeholder="Last name"
             />
             <FormErrorMessage>
-              {errors.last_name?.message?.toString()}
+              {errors.lastname?.message?.toString()}
             </FormErrorMessage>
           </FormControl>
           <FormControl mt={4} isRequired isInvalid={Boolean(errors.username)}>

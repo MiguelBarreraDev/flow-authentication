@@ -11,6 +11,9 @@ import {
   ModalHeader
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { loginService } from '../services/privates.service'
+import { LoginDataInterface } from '../types'
 
 interface LoginProps {
   onClose: () => void
@@ -22,9 +25,16 @@ export const Login: React.FC<LoginProps> = ({ onClose }) => {
     register,
     formState: { errors }
   } = useForm()
+  const navigate = useNavigate()
 
   const onSubmit = handleSubmit(async (values) => {
-    console.log(values)
+    try {
+      await loginService(values as LoginDataInterface)
+      onClose()
+      navigate('/home')
+    } catch (error) {
+      console.error(error)
+    }
   })
 
   return (
