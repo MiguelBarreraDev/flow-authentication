@@ -7,11 +7,7 @@ export const signJWT = ({ payload }) => {
     algorithm: 'HS256',
     expiresIn: '1d'
   })
-
   return token
 }
 
-export const verifyJWT = ({ jwt }) => {
-  const jwtFragment = jwt.split(' ')[1]
-  return jsonwebtoken.verify(jwtFragment, JWT_PRIVATE_KEY)
-}
+export const verifyJWT = (jwt) => jsonwebtoken.verify(jwt, JWT_PRIVATE_KEY)
