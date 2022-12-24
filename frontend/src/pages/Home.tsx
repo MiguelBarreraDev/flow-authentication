@@ -1,9 +1,10 @@
 import { Box, Button, Container, Heading } from '@chakra-ui/react'
-import { logoutService } from '../services/privates.service'
+import { useAuth } from '../hooks/useAuth'
 
 export const Home: React.FC = () => {
+  const { logout } = useAuth()
   const handleLogout = async (): Promise<void> => {
-    await logoutService()
+    await logout()
   }
 
   return (

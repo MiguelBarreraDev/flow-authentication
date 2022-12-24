@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { loginService } from '../services/privates.service'
+import { useAuth } from '../hooks/useAuth'
 import { LoginDataInterface } from '../types'
 
 interface LoginProps {
@@ -26,10 +26,11 @@ export const Login: React.FC<LoginProps> = ({ onClose }) => {
     formState: { errors }
   } = useForm()
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const onSubmit = handleSubmit(async (values) => {
     try {
-      await loginService(values as LoginDataInterface)
+      await login(values as LoginDataInterface)
       onClose()
       navigate('/home')
     } catch (error) {

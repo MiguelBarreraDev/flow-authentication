@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Container,
@@ -47,6 +48,7 @@ export const Header: React.FC = () => {
         maxW="8xl"
         display="flex"
         justifyContent="space-between"
+        alignItems="center"
       >
         <Box>
           <Text as={LinkFromReacRouter} to="/" fontSize="2xl" fontWeight="bold">
@@ -54,6 +56,7 @@ export const Header: React.FC = () => {
           </Text>
         </Box>
         <Box display="flex" alignItems="center" gap={{ base: 2, lg: 4 }}>
+          <Avatar size="md" />
           <Button
             onClick={() => handleOpen('login')}
             colorScheme="purple"

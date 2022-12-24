@@ -1,7 +1,9 @@
 export interface UserInterface {
-  first_name: string
-  last_name: string
+  id: string
+  firstname: string
+  lastname: string
   username: string
+  imageUrl?: string
   token: string
 }
 
@@ -11,8 +13,8 @@ export interface LoginDataInterface {
 }
 
 export interface SignupDataInterface {
-  first_name: string
-  last_name: string
+  firstname: string
+  lastname: string
   username: string
   password: string
 }
@@ -20,5 +22,5 @@ export interface SignupDataInterface {
 export interface useAuthInterface {
   signup: (data: SignupDataInterface) => Promise<void>
   login: (data: LoginDataInterface) => Promise<void>
-  logout: () => void
+  logout: () => Promise<void>
 }

@@ -42,6 +42,7 @@ export const Profile: React.FC = () => {
             position="absolute"
             flexDir={{ base: 'column', md: 'row' }}
             h="100%"
+            w="100%"
             minH={200}
             bottom={0}
             left={{ base: '50%', md: 4 }}
@@ -51,7 +52,7 @@ export const Profile: React.FC = () => {
             }}
             alignItems="center"
           >
-            <Popover placement="left-end">
+            <Popover placement="bottom-end">
               <PopoverTrigger>
                 <Box position="relative" boxSize={200}>
                   <Image
@@ -117,16 +118,22 @@ export const Profile: React.FC = () => {
                 </PopoverBody>
               </PopoverContent>
             </Popover>
-            <Box alignSelf="end" h="50%" p={{ base: 0, md: '1em 1.5em' }}>
+            <Flex
+              w={{ base: '100%', md: 'auto' }}
+              alignSelf="end"
+              h="50%"
+              p={{ base: 0, md: '1em 1.5em' }}
+              justifyContent="center"
+            >
               <Text
                 textAlign="center"
-                alignSelf="center"
+                alignSelf={{ base: 'center', md: 'start' }}
                 fontSize="2xl"
                 fontWeight="bold"
               >
                 Username username
               </Text>
-            </Box>
+            </Flex>
           </Box>
         </Box>
       </Container>

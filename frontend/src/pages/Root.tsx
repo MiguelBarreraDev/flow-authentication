@@ -20,7 +20,7 @@ export const Root: React.FC = () => {
           // sm: 'center',
           lg: 'space-around'
         }}
-        minH="calc(100vh - 56px)"
+        minH="calc(100vh - 64px)"
         pb={{ base: 100, lg: 200 }}
         gap={{ base: 6, lg: 4 }}
       >

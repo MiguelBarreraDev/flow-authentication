@@ -1,12 +1,5 @@
-import { useEffect } from 'react'
+import { useContext } from 'react'
+import { UserContextInterface, userContext } from '../context'
 
-import useSWR from 'swr'
-
-export const useUser = (): {} => {
-  const { data } = useSWR('/users/profile')
-
-  useEffect(() => {
-    console.log({ data })
-  }, [data])
-  return {}
-}
+export const useUser = (): UserContextInterface =>
+  useContext(userContext) as UserContextInterface

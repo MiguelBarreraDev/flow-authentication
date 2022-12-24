@@ -11,7 +11,7 @@ import {
   ModalHeader
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-import { signupService } from '../services/privates.service'
+import { useAuth } from '../hooks/useAuth'
 import { SignupDataInterface } from '../types'
 
 interface SignupProps {
@@ -24,9 +24,10 @@ export const Signup: React.FC<SignupProps> = ({ onClose }) => {
     register,
     formState: { errors, isSubmitting }
   } = useForm()
+  const { signup } = useAuth()
 
   const onSubmit = handleSubmit(async (values) => {
-    await signupService(values as SignupDataInterface)
+    await signup(values as SignupDataInterface)
     console.log(values)
   })
 
