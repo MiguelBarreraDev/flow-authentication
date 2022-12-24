@@ -1,5 +1,5 @@
 import UserService from '#services/user.services.js'
-import { signJWT } from '#utils/jwt.utils.js'
+import { generateJWT, generateRefreshToken } from '#utils/jwt.utils.js'
 import { hash } from 'bcrypt'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -32,9 +32,16 @@ const userSignupController = async (req, res) => {
     password: hashedPassword
   })
 
-  // Generate a JWT for the user who logs in to the application
+  // Generate access token
   const payload = { id }
-  const jwt = signJWT({ payload })
+  const { accessToken } = generateJWT({ payload })
+
+  // Generate refresh token
+  const { refreshToken, expiresIn } = generateRefreshToken({ payload })
+  res.cookie('token', refreshToken, {
+    maxAge: expiresIn * 1000,
+    httpOnly: true
+  })
 
   res.status(201).json({
     id: user.id,
@@ -42,7 +49,7 @@ const userSignupController = async (req, res) => {
     lastname: user.lastname,
     username: user.username,
     email: user.email,
-    jwt
+    token: accessToken
   })
 }
 
