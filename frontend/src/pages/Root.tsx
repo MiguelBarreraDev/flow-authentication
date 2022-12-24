@@ -17,11 +17,11 @@ export const Root: React.FC = () => {
         alignItems="center"
         justifyContent={{
           base: 'space-evenly',
-          sm: 'center',
+          // sm: 'center',
           lg: 'space-around'
         }}
         minH="calc(100vh - 56px)"
-        pb={{ base: 100, sm: 200 }}
+        pb={{ base: 100, lg: 200 }}
         gap={{ base: 6, lg: 4 }}
       >
         <MotionBox
@@ -30,33 +30,32 @@ export const Root: React.FC = () => {
           transition={{ duration: 0.5 }}
           display="flex"
           flexDirection="column"
-          gap={4}
+          gap={{ base: 10, sm: 4 }}
         >
           <Heading
             as="h3"
-            fontSize={{ base: 'clamp(2em, 6vw, 7em)', lg: '5xl' }}
+            fontSize={{ base: 'clamp(2.4em, 6vw, 7em)', lg: '5xl' }}
             maxW={{ base: '100%', lg: '30ch' }}
             textAlign={{ base: 'center', lg: 'left' }}
           >
             <Text color="purple.400" display="inline">
-              Lorem ipsum
+              Lorem ipsum{' '}
             </Text>
             <Text display="inline">
               dolor sit amet consectetur adipisicing elit.
             </Text>
           </Heading>
           <Text
-            maxW={{ base: '100%', lg: '80ch' }}
-            color="gray.500"
+            maxW={{ base: '100%', lg: '60ch' }}
+            fontSize={{ base: 'clamp(1.2em, 4vw, 1.5em)', lg: 'xl' }}
+            color="gray.400"
             textAlign={{ base: 'center', lg: 'left' }}
             borderLeft={{ lg: '1px' }}
             pl={2}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
             ratione minus officia, quasi fuga maiores magnam alias impedit neque
-            fug. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Repellendus ratione minus officia, quasi fuga maiores magnam alias
-            impedit neque fug.
+            fug.
           </Text>
         </MotionBox>
         <MotionBox

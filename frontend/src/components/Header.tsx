@@ -42,7 +42,12 @@ export const Header: React.FC = () => {
       w="100%"
       bg="white"
     >
-      <Container maxW="8xl" display="flex" justifyContent="space-between">
+      <Container
+        px={{ base: 0, sm: 4 }}
+        maxW="8xl"
+        display="flex"
+        justifyContent="space-between"
+      >
         <Box>
           <Text as={LinkFromReacRouter} to="/" fontSize="2xl" fontWeight="bold">
             Auth.js
