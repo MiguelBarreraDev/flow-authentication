@@ -10,7 +10,8 @@ expressApp.use(morgan('tiny'))
 expressApp.use(express.json())
 expressApp.use(
   cors({
-    origin: process.env.CLIENT_URL
+    origin: process.env.CLIENT_URL,
+    credentials: true
   })
 )
 
