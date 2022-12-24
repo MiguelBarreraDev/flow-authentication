@@ -28,12 +28,17 @@ const userLoginController = async (req, res) => {
 
   // Generate refresh token
   const { refreshToken, expiresIn } = generateRefreshToken({ payload })
-  res.cookie('token', refreshToken, {
+  res.cookie('refreshToken', refreshToken, {
     maxAge: expiresIn * 1000,
     httpOnly: true
   })
 
   return res.json({
+    id: existingUser.id,
+    firstname: existingUser.firstname,
+    lastname: existingUser.lastname,
+    username: existingUser.username,
+    email: existingUser.email,
     token: accessToken
   })
 }
