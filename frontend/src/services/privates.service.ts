@@ -22,3 +22,7 @@ export const signupService = async (
   })
   return body
 }
+
+export const logoutService = async (): Promise<void> => {
+  await api.post('/users/logout')
+}
