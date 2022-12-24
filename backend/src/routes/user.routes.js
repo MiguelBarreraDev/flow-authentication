@@ -1,6 +1,7 @@
 import userDataController from '#controllers/users/user-data.controller.js'
 import userDeleteController from '#controllers/users/user-delete.controller.js'
 import userLoginController from '#controllers/users/user-login.controller.js'
+import { userLogoutController } from '#controllers/users/user-logout.controller.js'
 import userPasswordController from '#controllers/users/user-password.controller.js'
 import userPrfofileController from '#controllers/users/user-profile.controller.js'
 import { userRefreshController } from '#controllers/users/user-refresh.controller.js'
@@ -31,5 +32,6 @@ userRouter
   )
   .delete('/', validateJWT, validateUnsignupDTO, userDeleteController)
   .get('/refresh', validateRefreshJWT, userRefreshController)
+  .get('/logout', userLogoutController)
 
 export default userRouter
