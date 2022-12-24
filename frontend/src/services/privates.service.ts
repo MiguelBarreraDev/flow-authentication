@@ -24,5 +24,7 @@ export const signupService = async (
 }
 
 export const logoutService = async (): Promise<void> => {
-  await api.post('/users/logout')
+  await api.get('/users/logout', {
+    withCredentials: true
+  })
 }
