@@ -1,5 +1,5 @@
 import UserService from '#services/user.services.js'
-import { generateJWT, generateRefreshToken } from '#utils/jwt.utils.js'
+import { generateRefreshToken, generateToken } from '#utils/jwt.utils.js'
 import { hash } from 'bcrypt'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -34,7 +34,7 @@ const userSignupController = async (req, res) => {
 
   // Generate access token
   const payload = { id }
-  const { accessToken } = generateJWT({ payload })
+  const { accessToken } = generateToken({ payload })
 
   // Generate refresh token
   const { refreshToken, expiresIn } = generateRefreshToken({ payload })
