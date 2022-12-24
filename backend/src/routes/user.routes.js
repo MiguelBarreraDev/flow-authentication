@@ -3,8 +3,10 @@ import userDeleteController from '#controllers/users/user-delete.controller.js'
 import userLoginController from '#controllers/users/user-login.controller.js'
 import userPasswordController from '#controllers/users/user-password.controller.js'
 import userPrfofileController from '#controllers/users/user-profile.controller.js'
+import { userRefreshController } from '#controllers/users/user-refresh.controller.js'
 import userSignupController from '#controllers/users/user-signup.controller.js'
 import validateJWT from '#middlewares/validateJWT.js'
+import { validateRefreshJWT } from '#middlewares/validateRefreshJWT.js'
 import {
   validateLoginDTO,
   validateSignupDTO,
@@ -28,5 +30,6 @@ userRouter
     userPasswordController
   )
   .delete('/', validateJWT, validateUnsignupDTO, userDeleteController)
+  .get('/refresh', validateRefreshJWT, userRefreshController)
 
 export default userRouter
