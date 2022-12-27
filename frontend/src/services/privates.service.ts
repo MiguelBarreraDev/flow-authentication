@@ -48,7 +48,7 @@ export const refreshService = async (): Promise<
       withCredentials: true
     })
   } catch (error) {
-    if (error instanceof Error) return { code: 401, message: error.message }
+    if (error instanceof Error) return await Promise.reject(error)
   }
 
   return result?.data

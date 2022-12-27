@@ -15,14 +15,16 @@ export const useRecoveryUser = (): { loading: boolean } => {
           type: 'updateUser',
           payload: { token }
         })
+
         const profileServiceResponse = await profileService(token)
         userDispatch({
           type: 'updateUser',
           payload: profileServiceResponse
         })
+
         setLoading(false)
       } catch (error) {
-        console.error(error)
+        // console.error(error)
         setLoading(false)
       }
     }

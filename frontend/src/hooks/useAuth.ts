@@ -12,6 +12,7 @@ import { useUser } from './useUser'
 
 export const useAuth = (): useAuthInterface => {
   const { userState, userDispatch } = useUser()
+
   const login = async (data: LoginDataInterface): Promise<void> => {
     const serviceResponse = await loginService(data)
     userDispatch({
