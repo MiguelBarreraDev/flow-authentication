@@ -6,6 +6,7 @@ specifiers:
   ajv-errors: ^3.0.0
   ajv-formats: ^2.1.1
   bcrypt: ^5.0.1
+  cookie-parser: ^1.4.6
   cors: ^2.8.5
   dotenv: ^16.0.1
   eslint: ^8.30.0
@@ -29,6 +30,7 @@ dependencies:
   ajv-errors: 3.0.0_ajv@8.11.2
   ajv-formats: 2.1.1_ajv@8.11.2
   bcrypt: 5.1.0
+  cookie-parser: 1.4.6
   cors: 2.8.5
   dotenv: 16.0.3
   eslint-config-standard: 17.0.0_snpl5wgzq3nl6iwyoqvj6sxsdi
@@ -1237,8 +1239,21 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
+  /cookie-parser/1.4.6:
+    resolution: {integrity: sha512-z3IzaNjdwUC2olLIB5/ITd0/setiaFMLYiZJle7xg5Fe9KWAceil7xszYfHHBtDFYLSgJduS2Ty0P1uJdPDJeA==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      cookie: 0.4.1
+      cookie-signature: 1.0.6
+    dev: false
+
   /cookie-signature/1.0.6:
     resolution: {integrity: sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ==}
+    dev: false
+
+  /cookie/0.4.1:
+    resolution: {integrity: sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==}
+    engines: {node: '>= 0.6'}
     dev: false
 
   /cookie/0.5.0:
