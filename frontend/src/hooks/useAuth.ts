@@ -11,7 +11,7 @@ import {
 import { useUser } from './useUser'
 
 export const useAuth = (): useAuthInterface => {
-  const { userDispatch } = useUser()
+  const { userState, userDispatch } = useUser()
   const login = async (data: LoginDataInterface): Promise<void> => {
     const serviceResponse = await loginService(data)
     userDispatch({
@@ -35,5 +35,5 @@ export const useAuth = (): useAuthInterface => {
     })
   }
 
-  return { login, signup, logout }
+  return { login, signup, logout, isLogged: Boolean(userState.token) }
 }

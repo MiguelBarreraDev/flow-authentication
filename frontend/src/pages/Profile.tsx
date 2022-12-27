@@ -14,8 +14,10 @@ import {
 import { EditIcon } from '../assets/EditIcon'
 import { ExpandIcon } from '../assets/ExpandIcon'
 import { ShowIcon } from '../assets/ShowIcon'
+import { useUser } from '../hooks/useUser'
 
 export const Profile: React.FC = () => {
+  const { userState } = useUser()
   return (
     <Box>
       <Container px={{ base: 0, md: 4 }} maxW="8xl">
@@ -131,7 +133,7 @@ export const Profile: React.FC = () => {
                 fontSize="2xl"
                 fontWeight="bold"
               >
-                Username username
+                {`${userState.firstname} ${userState.lastname}`}
               </Text>
             </Flex>
           </Box>

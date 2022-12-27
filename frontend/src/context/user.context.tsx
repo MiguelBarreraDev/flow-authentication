@@ -3,7 +3,7 @@ import { UserInterface } from '../types'
 
 export interface ActionUserInterface {
   type: string
-  payload?: UserInterface
+  payload?: {} | UserInterface
 }
 
 export interface UserContextInterface {

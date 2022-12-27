@@ -23,4 +23,5 @@ export interface useAuthInterface {
   signup: (data: SignupDataInterface) => Promise<void>
   login: (data: LoginDataInterface) => Promise<void>
   logout: () => Promise<void>
+  isLogged: boolean
 }

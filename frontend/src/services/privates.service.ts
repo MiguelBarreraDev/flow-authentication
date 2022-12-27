@@ -28,3 +28,28 @@ export const logoutService = async (): Promise<void> => {
     withCredentials: true
   })
 }
+
+export const profileService = async (token: string): Promise<UserInterface> => {
+  const { data } = await api.get('/users/profile', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    withCredentials: true
+  })
+  return data
+}
+
+export const refreshService = async (): Promise<
+  { token: string } | { code: number; message: string }
+> => {
+  let result
+  try {
+    result = await api.get('/users/refresh', {
+      withCredentials: true
+    })
+  } catch (error) {
+    if (error instanceof Error) return { code: 401, message: error.message }
+  }
+
+  return result?.data
+}
