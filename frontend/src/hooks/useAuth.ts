@@ -1,3 +1,5 @@
+import { currentTime } from '~/utils'
+import { ls } from '~/utils/ls'
 import {
   loginService,
   logoutService,
@@ -15,6 +17,7 @@ export const useAuth = (): useAuthInterface => {
 
   const login = async (data: LoginDataInterface): Promise<void> => {
     const serviceResponse = await loginService(data)
+    ls.setItem('isLogged', currentTime(true) as string)
     userDispatch({
       type: 'createUser',
       payload: serviceResponse
@@ -31,6 +34,7 @@ export const useAuth = (): useAuthInterface => {
 
   const logout = async (): Promise<void> => {
     await logoutService()
+    ls.removeItem('isLogged')
     userDispatch({
       type: 'resetUser'
     })
