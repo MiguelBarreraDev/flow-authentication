@@ -7,6 +7,15 @@ export const useRecoveryUser = (): { loading: boolean } => {
   const { userDispatch } = useUser()
 
   useEffect(() => {
+    window.addEventListener('storage', (e) => {
+      const { key } = e
+      if (key !== 'isLogged') return
+
+      window.location.reload()
+    })
+  }, [])
+
+  useEffect(() => {
     const runServices = async (): Promise<void> => {
       try {
         const { token } = (await refreshService()) as { token: string }
