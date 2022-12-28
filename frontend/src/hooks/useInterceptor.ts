@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { refreshService } from '~/services/privates.service'
-import { api } from '~/utils'
+import { api, currentTime } from '~/utils'
+import { ls } from '~/utils/ls'
 import { useAuth } from './useAuth'
 import { useUser } from './useUser'
 
@@ -9,6 +10,15 @@ export const useInterceptor = (): void => {
   const { userDispatch } = useUser()
 
   useEffect(() => {
+    api.interceptors.request.use(async (config) => {
+      const isLogged = window.localStorage.getItem('isLogged')
+
+      if (isLogged !== null)
+        ls.setItem('last_activity', currentTime(true) as string)
+
+      return config
+    })
+
     api.interceptors.response.use(
       (response) => response,
       async (error) => {
@@ -30,7 +40,6 @@ export const useInterceptor = (): void => {
             })
 
             originalConfig.headers.Authorization = `Bearer ${token}`
-
             return await api(originalConfig)
           } catch (_error) {
             await logout()
