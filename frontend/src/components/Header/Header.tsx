@@ -3,16 +3,28 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   Flex,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Modal,
   ModalContent,
   ModalOverlay,
   Text,
-  useDisclosure
+  useDisclosure,
+  useTheme
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { Link as LinkFromReacRouter } from 'react-router-dom'
+import React, { useRef, useState } from 'react'
+import {
+  Link as LinkFromReacRouter,
+  useLocation,
+  useNavigate
+} from 'react-router-dom'
+import { HomeIcon, MenuClose, MenuOpen } from '~/assets'
 import { useAuth } from '~/hooks/useAuth'
 import { useUser } from '~/hooks/useUser'
 import { Login } from './Login'
@@ -21,10 +33,14 @@ import { Signup } from './Signup'
 const MotionBox = motion(Box)
 
 export const Header: React.FC = () => {
-  const { isLogged } = useAuth()
+  const { pathname } = useLocation()
+  const ref = useRef(null) as React.RefObject<HTMLButtonElement> | undefined
+  const { isLogged, logout } = useAuth()
   const { userState } = useUser()
   const [position, setPosition] = useState<string>('none')
+  const { sidebar } = useTheme()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const navigate = useNavigate()
 
   const handleOpen = (currentPos: string): void => {
     setPosition(currentPos === 'login' ? 'signup' : 'login')
@@ -40,7 +56,7 @@ export const Header: React.FC = () => {
       pos="sticky"
       top={0}
       zIndex={800}
-      boxShadow="sm"
+      boxShadow={isLogged ? 'none' : 'sm'}
       px={2}
       py={2}
       as="nav"
@@ -49,22 +65,69 @@ export const Header: React.FC = () => {
     >
       <Container
         px={{ base: 0, sm: 4 }}
-        maxW="8xl"
+        maxW={isLogged ? `100%` : '8xl'}
         display="flex"
         justifyContent="space-between"
         alignItems="center"
       >
         <Box>
-          <Text as={LinkFromReacRouter} to="/" fontSize="2xl" fontWeight="bold">
-            Auth.js
+          <Text
+            as={LinkFromReacRouter}
+            to="/"
+            fontSize={isLogged ? 'lg' : '2xl'}
+            fontWeight={isLogged ? 'semibold' : 'bold'}
+            color={isLogged ? 'gray.500' : 'gray.800'}
+            display="flex"
+            alignItems="center"
+            textTransform={isLogged ? 'capitalize' : 'none'}
+          >
+            {isLogged && <HomeIcon />}
+            {isLogged ? pathname : 'Auth.js'}
           </Text>
         </Box>
         <Box display="flex" alignItems="center" gap={{ base: 2, lg: 4 }}>
           {isLogged ? (
-            <Avatar
-              size="md"
-              name={`${userState.firstname} ${userState.lastname}`}
-            />
+            <>
+              <Flex>
+                <IconButton
+                  onClick={() => sidebar.onToggle()}
+                  icon={
+                    (sidebar.isOpen as boolean) ? (
+                      <MenuOpen style={{ fontSize: '1.5em' }} />
+                    ) : (
+                      <MenuClose style={{ fontSize: '1.5em' }} />
+                    )
+                  }
+                  aria-label="close menu"
+                  variant="unstyled"
+                />
+              </Flex>
+              <Menu>
+                <MenuButton ref={ref} as={Box} cursor="pointer">
+                  <Avatar
+                    bg="gray.500"
+                    onClick={() => console.log(ref?.current?.click())}
+                    size="sm"
+                    name={`${userState.firstname} ${userState.lastname}`}
+                  />
+                </MenuButton>
+                <MenuList>
+                  <MenuItem onClick={async () => navigate('/profile')}>
+                    Profile
+                  </MenuItem>
+                  <MenuItem>My account</MenuItem>
+                  <Divider />
+                  <MenuItem
+                    onClick={async () => {
+                      await logout()
+                      navigate('/')
+                    }}
+                  >
+                    Log out
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </>
           ) : (
             <>
               <Button
