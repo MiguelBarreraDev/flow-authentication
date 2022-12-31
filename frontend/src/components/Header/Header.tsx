@@ -90,7 +90,7 @@ export const Header: React.FC = () => {
           )}
           <Text
             as={LinkFromReacRouter}
-            to="/"
+            to={pathname}
             fontSize={isLogged ? 'lg' : '2xl'}
             fontWeight={isLogged ? 'semibold' : 'bold'}
             color={isLogged ? 'gray.500' : 'gray.800'}
