@@ -1,6 +1,7 @@
 export * from './Home'
 export * from './NotFound'
+export * from './PrivateRoutes'
 export * from './Profile'
+export * from './PublicRoutes'
 export * from './Root'
 export * from './index'
-
