@@ -75,11 +75,14 @@ export const Header: React.FC = () => {
             <IconButton
               display="flex"
               onClick={() => sidebar.onToggle()}
+              overflow="hidden"
+              justifyContent="center"
+              alignItems="center"
               icon={
                 (sidebar.isOpen as boolean) ? (
-                  <MenuOpen style={{ fontSize: '1.5em' }} />
+                  <MenuOpen style={{ flex: 1, fontSize: '1.5em' }} />
                 ) : (
-                  <MenuClose style={{ fontSize: '1.5em' }} />
+                  <MenuClose style={{ flex: 1, fontSize: '1.5em' }} />
                 )
               }
               aria-label="close menu"
