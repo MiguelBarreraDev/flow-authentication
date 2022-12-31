@@ -70,23 +70,21 @@ export const Header: React.FC = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Flex>
+        <Flex alignItems="center">
           {isLogged && (
-            <Box>
-              <IconButton
-                display="flex"
-                onClick={() => sidebar.onToggle()}
-                icon={
-                  (sidebar.isOpen as boolean) ? (
-                    <MenuOpen style={{ fontSize: '1.5em' }} />
-                  ) : (
-                    <MenuClose style={{ fontSize: '1.5em' }} />
-                  )
-                }
-                aria-label="close menu"
-                variant="unstyled"
-              />
-            </Box>
+            <IconButton
+              display="flex"
+              onClick={() => sidebar.onToggle()}
+              icon={
+                (sidebar.isOpen as boolean) ? (
+                  <MenuOpen style={{ fontSize: '1.5em' }} />
+                ) : (
+                  <MenuClose style={{ fontSize: '1.5em' }} />
+                )
+              }
+              aria-label="close menu"
+              variant="unstyled"
+            />
           )}
           <Text
             as={LinkFromReacRouter}
