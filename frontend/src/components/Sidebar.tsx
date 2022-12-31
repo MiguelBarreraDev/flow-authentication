@@ -55,11 +55,21 @@ export const Sidebar: React.FC = () => {
 
   return (
     <Box
+      position={{ base: 'fixed', sm: 'relative' }}
+      top={0}
+      left={0}
+      bottom={0}
+      zIndex={999}
       ref={sidebarRef}
       bg="gray.800"
       color="white"
       minH="100vh"
-      w={sidebar.isOpen === true ? '240px' : '45px'}
+      maxH="100vh"
+      transform={{
+        base: sidebar.isOpen === true ? 'translateX(0)' : 'translateX(-100%)',
+        sm: 'translateX(0)'
+      }}
+      w={{ base: '240px', sm: sidebar.isOpen === true ? '240px' : '45px' }}
       transition=".2s linear"
     >
       <Box
