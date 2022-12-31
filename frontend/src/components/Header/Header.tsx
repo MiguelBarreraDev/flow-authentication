@@ -70,7 +70,24 @@ export const Header: React.FC = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Box>
+        <Flex>
+          {isLogged && (
+            <Box>
+              <IconButton
+                display="flex"
+                onClick={() => sidebar.onToggle()}
+                icon={
+                  (sidebar.isOpen as boolean) ? (
+                    <MenuOpen style={{ fontSize: '1.5em' }} />
+                  ) : (
+                    <MenuClose style={{ fontSize: '1.5em' }} />
+                  )
+                }
+                aria-label="close menu"
+                variant="unstyled"
+              />
+            </Box>
+          )}
           <Text
             as={LinkFromReacRouter}
             to="/"
@@ -84,24 +101,10 @@ export const Header: React.FC = () => {
             {isLogged && <HomeIcon />}
             {isLogged ? pathname : 'Auth.js'}
           </Text>
-        </Box>
+        </Flex>
         <Box display="flex" alignItems="center" gap={{ base: 2, lg: 4 }}>
           {isLogged ? (
             <>
-              <Flex>
-                <IconButton
-                  onClick={() => sidebar.onToggle()}
-                  icon={
-                    (sidebar.isOpen as boolean) ? (
-                      <MenuOpen style={{ fontSize: '1.5em' }} />
-                    ) : (
-                      <MenuClose style={{ fontSize: '1.5em' }} />
-                    )
-                  }
-                  aria-label="close menu"
-                  variant="unstyled"
-                />
-              </Flex>
               <Menu>
                 <MenuButton ref={ref} as={Box} cursor="pointer">
                   <Avatar

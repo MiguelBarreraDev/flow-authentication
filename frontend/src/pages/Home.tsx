@@ -31,7 +31,7 @@ export const Home: React.FC = () => {
     <Box w="100%">
       <Container maxW="8xl" px={2}>
         <Heading textAlign="center" size={'xl'}>
-          Home
+          Comprar paño de microfibra
         </Heading>
       </Container>
       <Container maxW="8xl" px={2} centerContent>
